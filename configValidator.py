@@ -26,10 +26,13 @@ os.chdir('default')
 
 
 for d in os.listdir():
-    ## base config
-    base_config = loadConfig( os.getcwd() + '/' + d + '/environments/' + base + '/config.env')
-    ## deploy config
-    deploy_config = loadConfig(os.getcwd() + '/' + d + '/environments/' + deploy + '/config.env')
+    try:
+        ## base config
+        base_config = loadConfig( os.getcwd() + '/' + d + '/environments/' + base + '/config.env')
+        ## deploy config
+        deploy_config = loadConfig(os.getcwd() + '/' + d + '/environments/' + deploy + '/config.env')
+    except FileNotFoundError:
+        print(f"{d} has no config.env; skipping")
 
     delta = set(base_config.keys()) - set(deploy_config.keys())
 
