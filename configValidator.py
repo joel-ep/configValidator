@@ -26,6 +26,8 @@ os.chdir('default')
 
 
 for d in os.listdir():
+    base_config = {}
+    deploy_config = {}
     try:
         ## base config
         base_config = loadConfig( os.getcwd() + '/' + d + '/environments/' + base + '/config.env')
